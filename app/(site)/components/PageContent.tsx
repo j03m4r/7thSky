@@ -32,7 +32,7 @@ const PageContent = () => {
                 <Cloud position={[0, 7, -20]} speed={0.2} opacity={1} />
                 <Cloud position={[-10, 10, -15]} speed={0.2} opacity={.5} />
                 <Cloud position={[8, -10, -20]} speed={0.2} opacity={1} />
-                <Text position={[0, 0, -20]} fontSize={5} font='https://fonts.googleapis.com/css2?family=Barlow'>7th Sky</Text>
+                <Text position={[0, 0, -20]} fontSize={5}>7th Sky</Text>
             </Suspense>
             <Sky azimuth={0.1} turbidity={1} rayleigh={0.5} inclination={0.6} distance={1000} />
             <Rig />
