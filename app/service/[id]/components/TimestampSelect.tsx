@@ -57,7 +57,7 @@ const TimestampSelect: React.FC<TimestampSelectProps> = ({ handleStartTimestampS
 
         handleStartTimestampSet(startTimestamp.toISOString());
         handleEndTimestampSet(endTimestamp.toISOString());
-    }, [year, day, month, startTime, endTime]);
+    }, [year, day, month, startTime, endTime, handleEndTimestampSet, handleStartTimestampSet]);
 
     return (
         <div className="flex flex-col gap-y-10 justify-center items-center">

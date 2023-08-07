@@ -32,7 +32,7 @@ const MediaItem: React.FC<MediaItemProps> = ({
     useEffect(() => {
         setIsLocalTrack(track?.id===data.id);
         setIsPlaying(track?.id===data.id&&GLOBAL_isPlaying);
-    }, [track?.id, GLOBAL_isPlaying]);
+    }, [track?.id, GLOBAL_isPlaying, data.id]);
 
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
 

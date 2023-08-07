@@ -70,7 +70,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     useEffect(() => {
         setIsPlaying(true);
         GLOBAL_setIsPlaying(true);
-    }, [track])
+    }, [track, GLOBAL_setIsPlaying])
     
     useEffect(() => {
         setIsPlaying(GLOBAL_isPlaying);

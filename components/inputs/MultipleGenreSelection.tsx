@@ -39,7 +39,7 @@ const MultipleGenreSelection: React.FC<GenreSelectionProps> = ({ genres } ) => {
         });
 
         router.push(url);
-    }, [selectedGenresTitles, router]);
+    }, [selectedGenresTitles, router, searchModal.isOpen, searchParams]);
 
     const updateSelectedGenres = (genre: Genre) => {
         let localGenres = [];
@@ -85,7 +85,7 @@ const MultipleGenreSelection: React.FC<GenreSelectionProps> = ({ genres } ) => {
         </div>
         {genres.length===0&&(
             <div className="flex justify-center items-center font-light text-sm">
-                That's all the genres!
+                That&apos;s all the genres!
             </div>
         )}
         </>

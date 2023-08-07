@@ -39,7 +39,7 @@ const BpmInput = () => {
         });
 
         router.push(url);
-    }, [minBpm, maxBpm, router]);
+    }, [minBpm, maxBpm, router, searchModal.isOpen, searchParams]);
 
     return (
         <div className="flex flex-col gap-y-4 w-full pl-1">

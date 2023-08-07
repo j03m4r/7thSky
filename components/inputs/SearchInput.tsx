@@ -34,7 +34,7 @@ const SearchInput = () => {
         });
 
         router.push(url);
-    }, [debounecedValue, router]);
+    }, [debounecedValue, router, searchModal, searchParams]);
 
     return (
         <>

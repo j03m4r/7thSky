@@ -36,7 +36,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ genres, keys }) => {
         setTimeout(() => {
             searchModal.onClose();
         }, 300);
-    }, []);
+    }, [searchModal]);
 
     let contentTitle = "Find Beats";
 

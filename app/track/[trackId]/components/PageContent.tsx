@@ -62,7 +62,7 @@ const PageContent: React.FC<PageContentProps> = ({ track, products }) => {
         }
 
         getIsPurchased();
-    }, [track.id,user?.id,]);
+    }, [track.id,user?.id,supabaseClient]);
 
     useEffect(() => {
         setIsLocalTrack(activeId===track.id);
