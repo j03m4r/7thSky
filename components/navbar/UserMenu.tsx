@@ -22,6 +22,7 @@ const UserMenu = () => {
     const router = useRouter();
     const uploadModal = useUploadModal();
     const updateProfileModal = useUpdateProfileModal();
+    const avatar_url = useLoadAvatar(userDetails?.avatar_url || '');
 
     const toggleOpen = useCallback(() => {
         setIsOpen((value) => !value);
@@ -50,7 +51,7 @@ const UserMenu = () => {
                 gap-3 rounded-full hover:shadow-md transition cursor-pointer'>
                     <AiOutlineMenu className={twMerge(`md:group-hover:translate-x-0.5 ease-linear duration-150`, isOpen ? 'md:translate-x-0.5' : 'translate-x-0')}/>
                     <div className={twMerge(`hidden md:block group-hover:-translate-x-0.5 transition ease-linear duration-150`, isOpen ? '-translate-x-0.5' : 'translate-x-0')}>
-                        <Avatar src={userDetails?.avatar_url?.indexOf('avatar')===0 ? useLoadAvatar(userDetails.avatar_url) : userDetails?.avatar_url} />
+                        <Avatar src={avatar_url} />
                     </div>
                 </div>
             ) : (

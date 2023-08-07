@@ -50,20 +50,24 @@ const PageContent: React.FC<PageContentProps> = ({ track, products }) => {
     const [isPurchased, setIsPurchased] = useState(false);
 
     const { activeId, isPlaying: GLOBAL_isPlaying, setIsPlaying: GLOBAL_setIsPlaying } = usePlayer();
+    
+    useEffect(() => {
+        const getIsPurchased = async () => {
+            const { data, error } = await supabaseClient.from('purchased_tracks').select('*').eq('user_id', user?.id)
+            .eq('track_id', track.id);
 
-    if (!track) {
-        return (
-            <div className="pt-28 flex flex-col h-full justify-center items-center">
-                <div className="font-semibold">Uh oh. No track!</div>
-                <Link href='/tracks' className="text-blue-600 hover:text-blue-500">Explore Tracks</Link>
-            </div>
-        );
-    }
+            if (error) console.log(error);
+
+            if (data?.length) setIsPurchased(true);
+        }
+
+        getIsPurchased();
+    }, [track.id,user?.id,]);
 
     useEffect(() => {
         setIsLocalTrack(activeId===track.id);
         setIsPlaying(activeId===track.id&&GLOBAL_isPlaying);
-    }, [activeId, GLOBAL_isPlaying]);
+    }, [activeId, GLOBAL_isPlaying, track.id]);
 
     const Icon = isPlaying ? BsPauseFill : BsPlayFill;
 
@@ -84,18 +88,14 @@ const PageContent: React.FC<PageContentProps> = ({ track, products }) => {
         fetchData();
     }, [track.id, supabaseClient, user?.id]);
 
-    useEffect(() => {
-        const getIsPurchased = async () => {
-            const { data, error } = await supabaseClient.from('purchased_tracks').select('*').eq('user_id', user?.id)
-            .eq('track_id', track.id);
-
-            if (error) console.log(error);
-
-            if (data?.length) setIsPurchased(true);
-        }
-
-        getIsPurchased();
-    }, []);
+    if (!track) {
+        return (
+            <div className="pt-28 flex flex-col h-full justify-center items-center">
+                <div className="font-semibold">Uh oh. No track!</div>
+                <Link href='/tracks' className="text-blue-600 hover:text-blue-500">Explore Tracks</Link>
+            </div>
+        );
+    }
 
     let priceContent = (
         <div className="text-center p-12 font-medium">No prices available.</div>

@@ -28,10 +28,12 @@ const PageContent: React.FC<PageContentProps> = ({ userDetails, tracks, favorite
         );
     }
 
+    const avatar_url = useLoadAvatar(userDetails.avatar_url || '');
+
     return (
         <div className={twMerge(`pt-28 pb-4 flex gap-x-8 w-full h-full`, player.ids.length>0 && 'pb-28')}>
             <div className="flex flex-col gap-y-8 p-8 shadow-md h-full">
-                <Avatar src={userDetails?.avatar_url?.indexOf('avatar')===0 ? useLoadAvatar(userDetails.avatar_url) : userDetails?.avatar_url} size={300} />
+                <Avatar src={avatar_url} size={300} />
                 <div className="font-semibold text-5xl w-full max-w-[300px]">{userDetails.full_name}</div>
                 <hr />
                 <div className="flex flex-col gap-y-4">
@@ -52,8 +54,8 @@ const PageContent: React.FC<PageContentProps> = ({ userDetails, tracks, favorite
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-8">
                 {tracks?.map((track) =>
-                    <div className="max-w-lg">
-                        <TrackItem key={track.id} data={track} onPlay={(id: string) => onPlay(id)} />
+                    <div key={track.id} className="max-w-lg">
+                        <TrackItem data={track} onPlay={(id: string) => onPlay(id)} />
                     </div>
                 )}
             </div>

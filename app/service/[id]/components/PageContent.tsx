@@ -57,15 +57,6 @@ const PageContent: React.FC<PageContentProps> = ({ service, availableDates }) =>
     const defaultEnd = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 23, 59).toISOString();
     const { supabaseClient: supabase } = useSessionContext();
 
-    if (!service) {
-        return (
-            <div className="pt-28 flex flex-col h-full justify-center items-center">
-                <div className="font-semibold">Uh oh. No Service!</div>
-                <Link href='/services' className="text-blue-600 hover:text-blue-500">Explore Services</Link>
-            </div>
-        );
-    }
-
     const {
         register,
         handleSubmit,
@@ -84,6 +75,7 @@ const PageContent: React.FC<PageContentProps> = ({ service, availableDates }) =>
     const start_time = watch('start_time');
     const end_time = watch('end_time');
 
+
     useEffect(() => {
         const getAvailableDatesInRange = async () => {
             const { data, error } = await supabase.from('available_dates')
@@ -97,7 +89,16 @@ const PageContent: React.FC<PageContentProps> = ({ service, availableDates }) =>
         };
 
         getAvailableDatesInRange();
-    }, [start_time, end_time]);
+    }, [start_time, end_time, service.id, supabase]);
+
+    if (!service) {
+        return (
+            <div className="pt-28 flex flex-col h-full justify-center items-center">
+                <div className="font-semibold">Uh oh. No Service!</div>
+                <Link href='/services' className="text-blue-600 hover:text-blue-500">Explore Services</Link>
+            </div>
+        );
+    }
 
     const scrollIntoTheView = (id: string) => {
         let element = document.getElementById(id) as HTMLElement;

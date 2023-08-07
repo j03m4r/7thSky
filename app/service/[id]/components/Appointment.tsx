@@ -35,6 +35,7 @@ const formatTime = (date: Date) => {
 const Appointment: React.FC<AppointmentProps> = ({ data, onSelect, selected }) => {
     const startTimestamp = new Date(data.start_time);
     const endTimestamp = new Date(data.end_time);
+    const avatar_url = useLoadAvatar(data.users.avatar_url);
 
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -43,7 +44,7 @@ const Appointment: React.FC<AppointmentProps> = ({ data, onSelect, selected }) =
         items-center cursor-pointer hover:bg-blue-50`, selected&&'bg-blue-50 shadow-lg hover:shadow-md')}>
             <div className="flex gap-x-5 justify-between items-center">
                 <div className="hidden md:block">
-                    <Avatar size={100} src={data.users.avatar_url?.indexOf('avatar')===0 ? useLoadAvatar(data.users.avatar_url) : data.users.avatar_url} />
+                    <Avatar size={100} src={avatar_url} />
                 </div>
                 <div className="text-xl md:text-4xl font-medium">{data.users.full_name}</div>
             </div>

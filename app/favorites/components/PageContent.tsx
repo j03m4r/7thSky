@@ -34,7 +34,7 @@ const PageContent: React.FC<PageContentProps> = ({ tracks }) => {
     return (
         <div className={twMerge(`pt-24 flex flex-col gap-y-4 pb-4`, player.ids.length>0 && 'pb-28')}>
             {tracks.map((track) => (
-                <MediaItem data={track} onClick={(id: string) => onPlay(id)} />
+                <MediaItem key={track.id} data={track} onClick={(id: string) => onPlay(id)} />
             ))}
         </div>
     );
