@@ -33,7 +33,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ price, cartItems }) => {
 
     useEffect(() => {
         checkoutModal.setProducts(cartItems);
-    }, [cartItems, checkoutModal]);
+    }, [cartItems.length,]);
 
     const onChange = (open: boolean) => {
         if (!open) {

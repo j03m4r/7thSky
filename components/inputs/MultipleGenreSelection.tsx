@@ -19,10 +19,8 @@ const MultipleGenreSelection: React.FC<GenreSelectionProps> = ({ genres } ) => {
     const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
     const [unselectedGenres, setUnselectedGenres] = useState<Genre[]>(genres);
     const selectedGenresTitles = selectedGenres.map((genre) => genre.title);
-    const searchModal = useSearchModal();
 
     useEffect(() => {
-        if (!searchModal.isOpen) { return; }
         let query = {
             genres: selectedGenresTitles,
         };
@@ -39,7 +37,7 @@ const MultipleGenreSelection: React.FC<GenreSelectionProps> = ({ genres } ) => {
         });
 
         router.push(url);
-    }, [selectedGenresTitles, router, searchModal.isOpen, searchParams]);
+    }, [selectedGenresTitles.length, router, searchParams]);
 
     const updateSelectedGenres = (genre: Genre) => {
         let localGenres = [];

@@ -16,10 +16,8 @@ const KeySelection: React.FC<KeySelectionProps> = ({ keys }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [key, setKey] = useState<Key>();
-    const searchModal = useSearchModal();
 
     useEffect(() => {
-        if (!searchModal.isOpen) { return; }
         let query = {
             key: key?.id,
         };
@@ -36,7 +34,7 @@ const KeySelection: React.FC<KeySelectionProps> = ({ keys }) => {
         });
 
         router.push(url);
-    }, [key?.id, router, searchModal.isOpen, searchParams]);
+    }, [key?.id, router, searchParams]);
 
     return (
         <div className="flex flex-col gap-y-4 w-full pl-1">

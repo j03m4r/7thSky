@@ -38,7 +38,7 @@ const CheckoutItem: React.FC<CheckoutItemInterface> = ({ track, isLoading }) => 
         }
 
         getIsPurchased();
-    }, [user?.id, track.id, supabaseClient]);
+    }, [user?.id, track.id,]);
 
     const handleDownload = async () => {
         const { data, error } = await supabaseClient.storage.from('tracks').download(track.track_path);
