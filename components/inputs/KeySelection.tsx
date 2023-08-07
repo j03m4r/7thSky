@@ -16,8 +16,10 @@ const KeySelection: React.FC<KeySelectionProps> = ({ keys }) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [key, setKey] = useState<Key>();
+    const searchModal = useSearchModal();
 
     useEffect(() => {
+        if (!searchModal.isOpen) { return; }
         let query = {
             key: key?.id,
         };

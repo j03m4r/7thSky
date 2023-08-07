@@ -14,8 +14,10 @@ const SearchInput = () => {
     const searchParams = useSearchParams();
     const [value, setValue] = useState<string>("");
     const debounecedValue = useDebounce<string>(value, 500);
+    const searchModal = useSearchModal();
 
     useEffect(() => {
+        if (!searchModal.isOpen) { return; }
         let query = {
             title: debounecedValue,
         };

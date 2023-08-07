@@ -45,7 +45,7 @@ const AuthModal = () => {
             setUserFullName();
             onClose();
         }
-    }, [session, router, onClose, setUserFullName]);
+    }, [session, router, onClose]);
 
     const onChange = (open: boolean) => {
         if (!open) {

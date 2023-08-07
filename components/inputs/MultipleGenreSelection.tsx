@@ -19,8 +19,10 @@ const MultipleGenreSelection: React.FC<GenreSelectionProps> = ({ genres } ) => {
     const [selectedGenres, setSelectedGenres] = useState<Genre[]>([]);
     const [unselectedGenres, setUnselectedGenres] = useState<Genre[]>(genres);
     const selectedGenresTitles = selectedGenres.map((genre) => genre.title);
+    const searchModal = useSearchModal();
 
     useEffect(() => {
+        if (!searchModal.isOpen) { return; }
         let query = {
             genres: selectedGenresTitles,
         };

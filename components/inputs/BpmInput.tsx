@@ -12,11 +12,13 @@ import useSearchModal from "@/hooks/useSearchModal";
 const BpmInput = () => {
     const [minBpm, setMinBpm] = useState(0);
     const [maxBpm, setMaxBpm] = useState(1000);
+    const searchModal = useSearchModal();
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
     useEffect(() => {
+        if (!searchModal.isOpen) { return; }
         if (isNaN(minBpm) || isNaN(maxBpm)) { return }
         if (maxBpm < minBpm) { return }
 
