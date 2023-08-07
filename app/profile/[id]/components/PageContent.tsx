@@ -18,6 +18,7 @@ interface PageContentProps {
 const PageContent: React.FC<PageContentProps> = ({ userDetails, tracks, favoriteGenres }) => {
     const player = usePlayer();
     const onPlay = useOnPlay(tracks);
+    const avatar_url = useLoadAvatar(userDetails?.avatar_url || '');
 
     if (!userDetails) {
         return (
@@ -27,8 +28,6 @@ const PageContent: React.FC<PageContentProps> = ({ userDetails, tracks, favorite
             </div>
         );
     }
-
-    const avatar_url = useLoadAvatar(userDetails.avatar_url || '');
 
     return (
         <div className={twMerge(`pt-28 pb-4 flex gap-x-8 w-full h-full`, player.ids.length>0 && 'pb-28')}>
