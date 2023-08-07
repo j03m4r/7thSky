@@ -35,7 +35,7 @@ const PageContent = () => {
                 <Text position={[0, 0, -20]} fontSize={5}>7th Sky</Text>
             </Suspense>
             <Sky azimuth={0.1} turbidity={1} rayleigh={0.5} inclination={0.6} distance={1000} />
-            {/* <Rig /> */}
+            <Rig />
         </Canvas>
     );
 }
