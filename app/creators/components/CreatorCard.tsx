@@ -18,7 +18,7 @@ const CreatorCard: React.FC<CreatorCardProps> = ({ data }) => {
         items-center shadow-md hover:-translate-y-1 transition cursor-pointer hover:shadow-lg">
             <div className="flex flex-col gap-y-4 justify-center items-start">
                 <SquareAvatar size={300} src={avatar_url} />
-                <div className="font-bold text-6xl max-w-[300px]">{data.full_name}</div>
+                <div className="font-bold text-4xl max-w-[300px] truncate">{data.full_name}</div>
             </div>
         </div>
     );
