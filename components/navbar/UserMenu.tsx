@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import useAuthModal from '@/hooks/useAuthModal';
 import MenuItem from './MenuItem';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { useUser } from '@/hooks/useUser';
 import { twMerge } from 'tailwind-merge';
@@ -15,6 +15,7 @@ import useUpdateProfileModal from '@/hooks/useUpdateProfileModal';
 import useLoadAvatar from '@/hooks/useLoadAvatar';
 
 const UserMenu = () => {
+    const pathname = usePathname();
     const { user, userDetails } = useUser();
     const authModal = useAuthModal();
     const [isOpen, setIsOpen] = useState(false);
@@ -56,12 +57,12 @@ const UserMenu = () => {
                 </div>
             ) : (
                 <div className="flex flex-row items-center gap-2">
-                    <div onClick={handleAuthOpen} className="font-semibold py-3 px-4 rounded-full border border-transparent hover:border-neutral-100 
-                    hover:shadow-md transition cursor-pointer">
+                    <div onClick={handleAuthOpen} className={twMerge(`font-semibold py-3 px-4 rounded-full border border-transparent hover:border-neutral-100 
+                    hover:shadow-md transition cursor-pointer`, pathname==='/'&&'hover:border-black')}>
                         Sign Up
                     </div>
-                    <div onClick={handleAuthOpen} className="font-semibold py-3 px-4 rounded-full border border-neutral-300
-                    hover:border-neutral-100 hover:shadow-md transition cursor-pointer">
+                    <div onClick={handleAuthOpen} className={twMerge(`font-semibold py-3 px-4 rounded-full border border-neutral-300
+                    hover:border-neutral-100 hover:shadow-md transition cursor-pointer`, pathname==='/'&&'border-black hover:border-black')}>
                         Log In
                     </div>
                 </div>
